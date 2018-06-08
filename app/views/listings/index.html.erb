@@ -2,7 +2,9 @@
 
 	<h1>No listings</h1>
 <% else %>
-	<% @listings.each do |listing| %>
+	<% @list.each do |listing| %>
 		<%= listing.name %>
+		<br/>
+		<%= listing.description %>
 	<% end %>
 <% end %>
