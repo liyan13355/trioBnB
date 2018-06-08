@@ -1,0 +1,8 @@
+<% if @listings.count == 0 %>
+
+	<h1>No listings</h1>
+<% else %>
+	<% @listings.each do |listing| %>
+		<%= listing.name %>
+	<% end %>
+<% end %>

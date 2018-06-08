@@ -3,6 +3,7 @@ require 'bcrypt'
 class User < ApplicationRecord 
   include Clearance::User
   has_one :role
+  has_many :listings
   # include BCrypt
 
 
@@ -23,4 +24,5 @@ class User < ApplicationRecord
 	   x = self.authentications.find_by(provider: 'google_oauth2')
 	   return x.token unless x.nil?
 	 end
+  # include BCrypt
 end
