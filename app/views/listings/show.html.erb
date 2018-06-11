@@ -1,0 +1,17 @@
+
+<h1>Unverified listings</h1>
+	<% @unverified_listings.each do |listing| %>
+		<%= listing.name %>
+		<br/>
+		<%= listing.description %>
+		<br/> 
+		<%= form_tag('/listings/verify') do %>
+			<input type="hidden" name="id" value="<%= listing.id %>">
+      		<input value="Verify" type="submit" />
+		<% end %>
+		<br/> 
+
+	<% end %>
+
+
+
