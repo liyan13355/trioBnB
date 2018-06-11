@@ -6,7 +6,6 @@ class User < ApplicationRecord
   has_many :listings
   # include BCrypt
 
-
   has_many :authentications, dependent: :destroy
 
 	 def self.create_with_auth_and_hash(authentication, auth_hash)
