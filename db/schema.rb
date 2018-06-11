@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_11_032843) do
+ActiveRecord::Schema.define(version: 2018_06_11_061141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2018_06_11_032843) do
     t.decimal "price"
     t.text "description"
     t.integer "user_id"
+    t.integer "verified", default: 1
   end
 
   create_table "roles", force: :cascade do |t|

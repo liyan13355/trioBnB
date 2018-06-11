@@ -3,10 +3,23 @@ class ListingsController < ApplicationController
 
 	def index
 		@listings = Listing.all
-		@list = Listing.paginate(:page => params[:page], :per_page => 10).order(:name)
+		@list = Listing.paginate(:page => params[:page], :per_page => 10).order(:name).where(verified: 0)
 	end
 
-	def new
+	def show 
+		@unverified_listings = Listing.order(:name).where(verified: 1)
+		if !current_user || (!current_user.superadmin? && !current_user.moderator?) 
+        	flash[:notice] = "Sorry. You are not allowed to perform this action."
+        	redirect_to listings_path, notice: "Sorry. You do not have the permissino to verify a property."
+      	end
+	end 
+
+	def verify
+		@verified_listings = Listing.find(params[:id]).update(verified: 0)
+		@verified_listings.save
+	end
+
+	def new 
 		@listing = Listing.new
 	end
 
