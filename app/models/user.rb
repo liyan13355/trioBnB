@@ -2,10 +2,9 @@ require 'bcrypt'
 
 class User < ApplicationRecord 
   include Clearance::User
-  has_one :role
+  # has_one :role
   has_many :listings
-  # include BCrypt
-
+  enum role: [:customer, :moderator, :superadmin]
 
   has_many :authentications, dependent: :destroy
 

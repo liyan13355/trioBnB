@@ -3,8 +3,7 @@ class ListingsController < ApplicationController
 
 	def index
 		@listings = Listing.all
-		@list = Listing.paginate(:page => params[:page], :per_page => 10)
-
+		@list = Listing.paginate(:page => params[:page], :per_page => 10).order(:name)
 	end
 
 	def new
