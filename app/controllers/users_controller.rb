@@ -12,11 +12,13 @@ class UsersController < Clearance::UsersController
 	def new
 	  @user = user_from_params
 	  render template: "users/new"
+	  
 	end
 
 	def create
 	  @user = user_from_params
-
+	  # @uploader = AvatarUploader.new
+   #    @uploader.store!(params[:avatar])
 	  if @user.save
 	    sign_in @user
 	    redirect_back_or url_after_create
@@ -51,6 +53,7 @@ class UsersController < Clearance::UsersController
 	  first_name = user_params.delete(:first_name)
 	  last_name = user_params.delete(:last_name)
 	  birthday = user_params.delete(:birthday)
+	  avatar = user_params.delete(:avatar)
 
 	  Clearance.configuration.user_model.new(user_params).tap do |user|
 	    user.email = email
@@ -58,6 +61,7 @@ class UsersController < Clearance::UsersController
 	    user.first_name = first_name
 	    user.last_name = last_name
 	    user.birthday = birthday
+	    user.avatar = avatar
 	  end
 	end
 

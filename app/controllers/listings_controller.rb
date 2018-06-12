@@ -4,6 +4,7 @@ class ListingsController < ApplicationController
 	def index
 		@listings = Listing.all
 		@list = Listing.paginate(:page => params[:page], :per_page => 10).order(:name).where(verified: 0)
+	
 	end
 
 	def show 
@@ -35,7 +36,6 @@ class ListingsController < ApplicationController
 	end
 
 	
-
 	private
 
 	# def check_host

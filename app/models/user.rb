@@ -1,11 +1,8 @@
-require 'bcrypt'
-
 class User < ApplicationRecord 
   include Clearance::User
-  # has_one :role
+  mount_uploader :avatar, AvatarUploader
   has_many :listings
   enum role: [:customer, :moderator, :superadmin]
-
   has_many :authentications, dependent: :destroy
 
 	 def self.create_with_auth_and_hash(authentication, auth_hash)
@@ -19,10 +16,10 @@ class User < ApplicationRecord
 	   return user
 	 end
 
+
 	 # grab google to access google for user data
 	 def google_token
 	   x = self.authentications.find_by(provider: 'google_oauth2')
 	   return x.token unless x.nil?
 	 end
-  # include BCrypt
 end
