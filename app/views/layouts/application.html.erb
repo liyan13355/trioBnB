@@ -3,22 +3,30 @@
 <head>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tag %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
-  <div id="header">
-    <% if signed_in? -%>
-      <%= button_to t(".sign_out"), sign_out_path, method: :delete %>
-    <% else -%>
-      <%= link_to t(".sign_in"), sign_in_path %>
-    <% end -%>
-  </div>
-
+    <nav class="navbar navbar-light bg-light">
+      <div class="navbar-brand">
+        <% if current_user %>
+          <img src="<%= current_user.avatar.thumb.url %>">
+        <% end %>
+      </div>
+    </nav> 
+    
   <div id="flash">
     <% flash.each do |key, value| -%>
       <div id="flash_<%= key %>"><%=h value %></div>
     <% end %>
   </div>
 
+          <div id="header">
+            <% if signed_in? -%>
+              <%= button_to t(".sign_out"), sign_out_path, method: :delete %>
+            <% else -%>
+              <%= link_to t(".sign_in"), sign_in_path %>
+            <% end -%>
+          </div>
   <%= yield %>
 </body>
 </html>

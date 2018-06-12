@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_11_061141) do
+ActiveRecord::Schema.define(version: 2018_06_12_025906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 2018_06_11_061141) do
     t.string "remember_token", limit: 128, null: false
     t.bigint "role_id"
     t.integer "role", default: 0
+    t.string "avatar"
     t.index ["email"], name: "index_users_on_email"
     t.index ["remember_token"], name: "index_users_on_remember_token"
     t.index ["role_id"], name: "index_users_on_role_id"
