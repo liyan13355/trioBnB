@@ -1,7 +1,26 @@
+<h2>Verified</h2>	
+
+<ul>
 	<% @list.each do |listing| %>
-		<%= listing.name %>
-		<br/>
-		<%= listing.description %>
+		<li><%= listing.name %><br/>
+		
+		<%= listing.description %><br/>
+		
+
+        <% if listing.images != nil %>
+			
+			<% listing.images.each do |individual| %>
+
+				<img src= "<%= individual.thumb.url %>" >		
+			<% end %>	
+			<%= form_tag("/listings/show/#{listing.id}", method: :post) do %>
+    			<input type="submit" value="Interested?" />
+    		<% end %>
+		<% end %>
+
+	</li>
+		<br/><br/>
 	<% end %>
+</ul>
 
  

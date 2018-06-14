@@ -1,0 +1,12 @@
+<h2>Your Reservations </h2>
+
+<% @listingid.each do |x| %>
+<%			@reservation_listing = Listing.order(:name).where(id: x) %> 
+	<%			@reservation_listing.each do |y| %>
+	<%=   		y.name 	%>
+	<%=   		y.description 	%>
+	<img src= "<%= y.images.bigthumb.url %>" >
+	<% end %>
+
+
+<% end %> 
