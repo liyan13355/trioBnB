@@ -5,6 +5,16 @@
 		<br/>
 		<%= listing.description %>
 		<br/> 
+
+		 <% if listing.images != nil %>
+			
+			<% listing.images.each do |individual| %>
+
+				<img src= "<%= individual.bigthumb.url %>" >		
+			<% end %>	
+			
+		<% end %>
+		
 		<%= form_tag('/listings/verify') do %>
 			<input type="hidden" name="id" value="<%= listing.id %>">
       		<input value="Verify" type="submit" />

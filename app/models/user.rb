@@ -2,6 +2,8 @@ class User < ApplicationRecord
   include Clearance::User
   mount_uploader :avatar, AvatarUploader
   has_many :listings
+  has_many :reservations
+  
   enum role: [:customer, :moderator, :superadmin]
   has_many :authentications, dependent: :destroy
 

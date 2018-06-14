@@ -1,0 +1,22 @@
+<h2>Make your booking (if you want)</h2>
+
+<%= $listing.name %> <br/>
+<%= $listing.description %><br/>
+<% $listing.images.each do |individual| %>
+
+	<img src= "<%= individual.bigthumb.url %>" >	
+<% end %>
+
+<%= form_for [@reservation] do |form| %>
+	<%= form.label :start_date %>
+	<%= form.date_field :start_date %>
+	<%= form.label :end_date %>
+	<%= form.date_field :end_date %>
+
+	<div class="submit-field">
+      <%= form.submit %>
+    </div>
+
+<% end %>	
+
+
