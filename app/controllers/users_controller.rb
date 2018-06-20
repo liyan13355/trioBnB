@@ -32,7 +32,8 @@ class UsersController < Clearance::UsersController
 	end
 
 	def update
-		
+
+	end
 
 	private
 
