@@ -1,0 +1,26 @@
+<h2> Reservations Made For Your Properties </h2>
+
+<% @owned_listings.each do |x| %>
+
+<% if !Reservation.where(listing_id: x.id).empty? %>
+		<% @property = Listing.find(x.id) %>
+		<%= @property.name %>
+		<br/>
+		<%= @property.description %>
+		<br/><br/>
+		<% @date_time = Reservation.where(listing_id: x.id) %>
+		<% @date_time.each do |y| %>
+			<p><strong>Start date: </strong></p><%= y.start_date %> <br/>
+			<p><strong>End date: </strong></p><%= y.end_date %><br/><br/>
+		<% end %>
+
+		<% @property.images.each do |individual| %>
+
+			<img src= "<%= individual %>" class= "img-fluid" >	
+		<% end %>
+		<br/>
+
+	<% end %>
+<% end %>
+
+		

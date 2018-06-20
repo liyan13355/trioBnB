@@ -1,6 +1,6 @@
 <div id="listingform" class="listings">
 
-<h2>Add Listing</h2>
+<h2>Update Listing</h2>
 
 <%= form_for [current_user, @listing] do |form| %>
     <%= render partial: '/listings/form', object: form %>
@@ -8,7 +8,5 @@
     <div class="submit-field">
       <%= form.submit %>
     </div>
-
- <% end %>
-
+<% end %>
 </div>

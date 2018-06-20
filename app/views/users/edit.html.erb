@@ -1,0 +1,27 @@
+<h2>Current Profile </h2>
+<p> Name: <%= @currentuser.first_name%> <%= @currentuser.last_name%> </p>
+<p> Birthday: <%= @currentuser.birthday%></p>
+<p> Email: <%= @currentuser.email%></p>
+<hr/>
+<p><strong> Congratulations! </strong> You are our 
+	<% if @currentuser.customer? %>
+	<strong> customer! </strong>
+	<% elsif @currentuser.role == "moderator" %>
+	<strong> moderator! </strong>
+	<%elsif @currentuser.role == "superadmin" %>
+	<strong> superadmin! </strong>
+	<% end %> </p>
+
+<img src="<%= @currentuser.avatar.thumb.url %>">
+
+<br/><hr/><br/>
+
+<h2>Update Your Profile</h2>
+
+<%= form_for [@currentuser] do |form| %>
+    <%= render partial: '/users/form', object: form %>
+
+    <div class="submit-field">
+      <%= form.submit %>
+    </div>
+<% end %>
