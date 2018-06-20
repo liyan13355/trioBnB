@@ -1,12 +1,23 @@
 <h2>Your Reservations </h2>
 
-<% @listingid.each do |x| %>
-<%			@reservation_listing = Listing.order(:name).where(id: x) %> 
-	<%			@reservation_listing.each do |y| %>
-	<%=   		y.name 	%>
-	<%=   		y.description 	%>
-	<img src= "<%= y.images.bigthumb.url %>" >
+<h3> <%= link_to "Make Payment", braintree_new_path %> </h3>
+<br/>
+
+<% @reservations.each do |x| %>
+	<% @reserved_listing = Listing.find(x.listing_id) %>
+	<%= @reserved_listing.name %>
+	<br/>
+	<%= @reserved_listing.description %>
+	<br/><br/>
+	<% @date = Reservation.find_by(user_id: current_user.id, listing_id: x.listing_id) %>
+	<p><strong>Start date: </strong></p><%= @date.start_date %> <br/>
+	<p><strong>End date: </strong></p><%= @date.end_date %>
+	<br/>
+
+	<% @reserved_listing.images.each do |individual| %>
+
+		<img src= "<%= individual %>" class= "img-fluid" >	
 	<% end %>
-
-
+	<br/><hr/><hr/>
 <% end %> 
+

@@ -27,6 +27,14 @@ class UsersController < Clearance::UsersController
 	  end
 	end
 
+	def edit
+		@currentuser = current_user
+	end
+
+	def update
+
+	end
+
 	private
 
 	def avoid_sign_in

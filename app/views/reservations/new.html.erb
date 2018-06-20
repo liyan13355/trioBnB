@@ -1,22 +1,34 @@
+
 <h2>Make your booking (if you want)</h2>
+<div>
+<p><strong> Name: </strong> <%= @listy.name %> </p> 
+<p><strong> Place: </strong><%= @listy.place_type %></p> 
+<p><strong> Room Number: </strong> <%= @listy.room_number %> </p> 
+<p><strong> Number of beds: </strong><%= @listy.bed_number %> </p> 
+<p><strong> Max number of guests: </strong><%= @listy.guest_number %> </p> 
+<p><strong> Country: </strong><%= @listy.country %> </p>
+<p><strong> State: </strong><%= @listy.state %> </p>
+<p><strong> City: </strong><%= @listy.city %> </p>
+<p><strong> Zipcode </strong> <%= @listy.zipcode %> </p>
+<p><strong> Address </strong> <%= @listy.address %> </p> 
+<p>RM <%= @listy.price %></p> 
+<p><strong> Description: </strong><%= @listy.description %></p>
+<% @listy.images.each do |individual| %>
 
-<%= $listing.name %> <br/>
-<%= $listing.description %><br/>
-<% $listing.images.each do |individual| %>
-
-	<img src= "<%= individual.bigthumb.url %>" >	
+	<img src= "<%= individual %>" class= "img-fluid" >	
 <% end %>
+</div>
 
-<%= form_for [@reservation] do |form| %>
+
+<%= form_for [current_user, @listy, @reservation] do |form| %>
 	<%= form.label :start_date %>
 	<%= form.date_field :start_date %>
 	<%= form.label :end_date %>
 	<%= form.date_field :end_date %>
+
 
 	<div class="submit-field">
       <%= form.submit %>
     </div>
 
 <% end %>	
-
-

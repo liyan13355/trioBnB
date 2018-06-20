@@ -1,0 +1,102 @@
+<h2 class="text-sm-center"> Your Listings </h2>
+<br/><br/>
+
+<h4 > Verified Listings </h4>
+<br/>
+<% @yourlistings.each do |x| %>
+Name: <strong><%= x.name %> </strong><p>   <%= form_tag("/users/#{current_user.id}/listings/#{x.id}", method: :delete) do %>
+    			<input type="submit" value="Destroy" />
+    		<% end %>   </p>
+    		<h6><a href = "http://localhost:3000/users/<%= current_user.id %>/listings/<%= x.id %>/edit">  Update This Property's Details </a></h6>
+<br/>
+Type of Place: <strong> <%= x.place_type %> </strong>
+<br/>
+ Number of Beds: <strong><%= x.bed_number %> </strong>
+<br/>
+ Max Number of Guests: <strong> <%= x.guest_number %> </strong>
+<br/>
+
+Country: <strong> <%= x.country %></strong>
+<br/>
+
+State: <strong> <%= x.state %></strong>
+<br/>
+ City: <strong> <%= x.city %></strong>
+<br/>
+ Postcode: <strong> <%= x.zipcode %></strong>
+<br/>
+Address: <strong> <%= x.address %></strong>
+<br/>
+Price: <strong> <%= x.price %></strong>
+<br/>
+Description: <strong> <%= x.description %></strong>
+<br/>
+ <% if x.images != nil %>
+			
+			<% x.images.each do |individual| %>
+
+				<img src= "<%= individual.bigthumb.url %>" >		
+			<% end %>	 
+<% end %>
+<% if !x.reservations.empty? %>
+<br/>
+<p><strong>This property is reserved from: </strong></p>
+<% Reservation.where(listing_id: x.id).order(:start_date).each_with_index do |y, index| %>
+	<p><strong> <%= index+1 %>)  </strong>  <%= y.start_date %> <strong> to </strong> <%= y.end_date %> </p> <br/>
+<%end%>
+<%end%>
+
+<br/><hr/>
+<% end %>
+
+<hr/><hr/><hr/>
+
+<h4> Unverified Listings </h4>
+<br/>
+<% @unverified.each do |x| %>
+ Name: <strong> <%= x.name %></strong> <p>   <%= form_tag("/users/#{current_user.id}/listings/#{x.id}", method: :delete) do %>
+    			<input type="submit" value="Destroy" />
+    		<% end %>   </p>
+    		<h6><a href = "http://localhost:3000/users/<%= current_user.id %>/listings/<%= x.id %>/edit">  Update This Property's Details </a></h6>
+<br/>
+Type of Place: <strong> <%= x.place_type %></strong>
+<br/>
+Number of Beds: <strong> <%= x.bed_number %></strong>
+<br/>
+Max Number of Guests: <strong> <%= x.guest_number %></strong>
+<br/>
+
+Country: <strong> <%= x.country %></strong>
+<br/>
+
+State: <strong> <%= x.state %></strong>
+<br/>
+City: <strong> <%= x.city %></strong>
+<br/>
+Zipcode: <strong> <%= x.zipcode %></strong>
+<br/>
+Address: <strong> <%= x.address %></strong>
+<br/>
+Price: <strong> <%= x.price %></strong>
+<br/>
+Description: <strong> <%= x.description %></strong>
+<br/>
+ <% if x.images != nil %>
+			
+			<% x.images.each do |individual| %>
+
+				<img src= "<%= individual.bigthumb.url %>" >		
+			<% end %>	 
+<% end %>
+<br/> <hr/>
+<% end %>
+
+
+
+
+
+
+
+
+
+

@@ -1,4 +1,4 @@
-<h2>Verified</h2>	
+<h2>Home</h2>	
 
 <ul>
 	<% @list.each do |listing| %>
@@ -13,9 +13,10 @@
 
 				<img src= "<%= individual.thumb.url %>" >		
 			<% end %>	
-			<%= form_tag("/listings/show/#{listing.id}", method: :post) do %>
+			<%= form_tag("/listings/show/nav/#{listing.id}", method: :post) do %>
     			<input type="submit" value="Interested?" />
     		<% end %>
+    		<%#= link_to "New Reservation", new_user_listing_reservation_path([current_user, listing]) %>
 		<% end %>
 
 	</li>
