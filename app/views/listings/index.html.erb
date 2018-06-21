@@ -15,7 +15,9 @@
 			<% end %>	
 			<%= form_tag("/listings/show/nav/#{listing.id}", method: :post) do %>
     			<input type="submit" value="Interested?" />
-    		<% end %>
+    	<% end %>
+
+
     		<%#= link_to "New Reservation", new_user_listing_reservation_path([current_user, listing]) %>
 		<% end %>
 
