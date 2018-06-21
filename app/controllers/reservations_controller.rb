@@ -19,16 +19,30 @@ class ReservationsController < ApplicationController
 		else
 		@reservations = current_user.reservations.new(new_reservations_params) 
 		@reservations.listing_id = params[:listing_id]
+		@thislisting = Listing.find(params[:listing_id]).user_id
+		host = User.find(@thislisting) 
+		receiver = host.email
+		customer = current_user.email 
+			if @reservations.save
+				ReservationMailer.booking_email(receiver).deliver_now
+				ReservationMailer.customer_booking(customer).deliver_now
 
+				redirect_to user_listing_reservations_path
+
+			else
+				flash[:notice] = "Sorry, these booking dates are not available."
+
+			end
 		end
-		if @reservations.save
-			redirect_to user_listing_reservations_path
-		end
+
+
 	end
 
 	def new_reservations_params
 		params.require(:reservation).permit(:start_date, :end_date)
 	end
+
+
 
 	def index
 		if !current_user

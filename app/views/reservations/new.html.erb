@@ -13,12 +13,17 @@
 <p><strong> Address </strong> <%= @listy.address %> </p> 
 <p>RM <%= @listy.price %></p> 
 <p><strong> Description: </strong><%= @listy.description %></p>
+	
+	<% @userid = @listy.user_id %>
+ <li> <strong>Host Contact:</strong>     <%= User.find(@userid).email %> </li>
+
 <% @listy.images.each do |individual| %>
 
-	<img src= "<%= individual %>" class= "img-fluid" >	
+	<img src= "<%= individual.bigthumb.url %>" class= "img-fluid" >	
 <% end %>
 </div>
 
+    		
 
 <%= form_for [current_user, @listy, @reservation] do |form| %>
 	<%= form.label :start_date %>
